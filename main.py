@@ -18,4 +18,5 @@ while True:
         print("changing files..")
         waiting_animation(3)
         wordchanger("Bewerbungsvorlage.docx", "Firma", Firma)
+        convert_docx_to_pdf("Bewerbungsvorlage.docx", "Bewerbung.pdf")
 
