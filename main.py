@@ -1,6 +1,7 @@
 from utils.utils import *
 from changer.wordchanger import *
 from changer.wordtopdf import *
+from sender.sender import *
 import datetime
 
 date = datetime.datetime.now()
@@ -28,6 +29,9 @@ while True:
         replace_text_in_docx("Bewerbung/Shpat Avdiu.docx", "DatummutaD", date)
         word_to_pdf_converter() #convert the word file to pdf and move it
 
+        print("sending email..")
+        waiting_animation(3)
+        #send_email(FirmenMail, "test", "test") #send the email to the company
         waiting_animation(3)
         #change the files back to the original
         replace_text_in_docx("Bewerbung/Shpat Avdiu.docx", Firma, "SDF)Pasdfunpoiva)PHDF(P)S") 

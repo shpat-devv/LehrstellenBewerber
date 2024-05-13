@@ -1,1 +1,7 @@
 /venv
+/secret.py
+/Bewerbung.docx
+/__pycache__
+/sender/__pycache__
+/changer/__pycache__
+/Bewerbung
