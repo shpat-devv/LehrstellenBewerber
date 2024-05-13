@@ -30,8 +30,7 @@ def replace_text_in_docx(docx_file, old_text, new_text):
 
     # Save the modified document if any replacement occurred
     if replaced:
-        doc.save("updated_document.docx")
+        doc.save(docx_file)
+        print("Document saved successfully.")
     else:
         print(f"Text '{old_text}' not found in the document.")
-
-

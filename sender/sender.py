@@ -1,6 +1,6 @@
 import smtplib
 
-def send(self_email,reciever_email, subject, message):
+def word_to_pdf_converter(self_email,reciever_email, subject, message):
     server = smtplib.SMTP('smtp.gmail.com', 587) #port 465 or 587
     server.starttls() 
 
