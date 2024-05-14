@@ -5,12 +5,14 @@ from sender.sender import send_email
 import datetime
 import os
 
-# Define the path to the document to be sent
-document_name = "Bewerbung/tosend/Bewerbung.pdf"
-document_path = os.path.join(os.path.dirname(__file__), document_name)
-
 # Get the current date
 current_date = datetime.datetime.now().strftime("%d.%m.%Y")
+
+# Define the path to the documents to be sent
+document_name = "Bewerbung/tosend"
+document_path = os.path.join(os.path.dirname(__file__), document_name)
+files = os.listdir(document_path)
+documents = [os.path.join(document_path, file) for file in files if os.path.isfile(os.path.join(document_path, file))]
 
 name = input ("Name: ")
 surname = input ("Nachname: ")
@@ -64,8 +66,7 @@ Mit freundlichen Grüßen,
 {name} {surname}
 """
         # Send the email with the attachment
-        send_email(company_email, f"Bewerbung um eine Lehrstelle als {apprenticeship}", email_message, document_path)
-        waiting_animation(3)
+        send_email(company_email, f"Bewerbung um eine Lehrstelle als {apprenticeship}", email_message, documents)
 
         # Revert the changes in the Word document
         replace_text_in_docx("Bewerbung/Shpat Avdiu.docx", company_name, "SDF)Pasdfunpoiva)PHDF(P)S")

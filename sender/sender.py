@@ -5,11 +5,12 @@ from email.mime.base import MIMEBase
 from email import encoders
 from email.utils import formatdate, COMMASPACE
 from os.path import basename
+import os
 import time
 
 from secret import secretgooglekey, googleemail
 
-def send_email(receiver_email, subject, message, attachment_path):
+def send_email(receiver_email, subject, message, folder_path):
     try:
         # Create a multipart message
         msg = MIMEMultipart()
@@ -21,16 +22,16 @@ def send_email(receiver_email, subject, message, attachment_path):
         # Attach message body
         msg.attach(MIMEText(message, 'plain'))
 
-        if attachment_path:
+        for file in folder_path:
             # Open the file to be sent
-            with open(attachment_path, "rb") as attachment:
+            with open(file, "rb") as attachment:
                 # Encode the attachment
                 part = MIMEBase('application', 'octet-stream')
                 part.set_payload(attachment.read())
                 encoders.encode_base64(part)
                 part.add_header(
                     'Content-Disposition',
-                    f'attachment; filename={basename(attachment_path)}'
+                    f'attachment; filename={basename(file)}'
                 )
                 msg.attach(part)
 
