@@ -14,3 +14,14 @@ def waiting_animation(wait_time):
             wait_time -= 1
     sys.stdout.write('\rDone!     ')
     sys.stdout.flush()
+
+ascii_art_name = """
+  _____    _    _   _____      _    _______ 
+ / ____|  | |  | | |  __ \    / \   |__   __|
+| (____   | |__| | | |__) |  / _ \     | |   
+ \____ \  |  __  | |  ___/  / ___ \    | |   
+ _____)|  | |  | | | |     /_/   \_\   | |   
+|_____/   |_|  |_| |_|                 |_|   
+
+"""
+

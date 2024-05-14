@@ -14,13 +14,20 @@ document_path = os.path.join(os.path.dirname(__file__), document_name)
 files = os.listdir(document_path)
 documents = [os.path.join(document_path, file) for file in files if os.path.isfile(os.path.join(document_path, file))]
 
-name = input("Name: ")
-surname = input("Nachname: ")
+print("Willkommen zum Bewerbungsschreiben Generator von:")
+time.sleep(1)
+print(ascii_art_name)
+time.sleep(1)
+
+name = input("Dein Name: ")
+surname = input("Dein Nachname: ")
 
 while True:
     # Collect input from the user
     apprenticeship = input("Lehre: ")
-    salutation = input("Anrede Person (Default = Damen und Herren): ") or "Damen und Herren"
+    print("hier müssen sie nichts eingeben, einfach Enter drücken falls sie keine Angaben haben.")
+    salutation = input("Anrede Person (Beispiel: Peter Müller): ") or "Damen und Herren"
+    print("hier müssen sie nichts eingeben, einfach Enter drücken falls sie keine Angaben haben.")
     gender = input("Geschlecht der Person (m oder f): ")
     company_name = input("Firma: ")
     application_address = input("Bewerbungsadresse: ")
