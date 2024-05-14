@@ -4,7 +4,7 @@ from changer.wordtopdf import *
 from sender.sender import send_email
 import datetime
 import os
-
+import subprocess
 # Get the current date
 current_date = datetime.datetime.now().strftime("%d.%m.%Y")
 
@@ -18,6 +18,12 @@ print("Willkommen zum Bewerbungsschreiben Generator von:")
 time.sleep(1)
 print(ascii_art_name)
 time.sleep(1)
+ask_for_help = input("Würdest du gerne Hilfe nebenbei haben? (j/n): ")
+
+if ask_for_help.lower() == "j":
+    subprocess.Popen(["python", "help/help.py"], creationflags=subprocess.CREATE_NEW_CONSOLE)
+    time.sleep(3)
+
 
 name = input("Dein Name: ")
 surname = input("Dein Nachname: ")
