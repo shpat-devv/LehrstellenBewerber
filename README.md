@@ -49,6 +49,6 @@ Wir freuen uns über Beiträge von allen, die daran interessiert sind, dieses Pr
 1. Forken Sie das Repository und erstellen Sie Ihren Branch aus „main“.
 2. Nehmen Sie Ihre Änderungen vor und stellen Sie sicher, dass der Code richtig formatiert ist.
 3. Testen Sie Ihre Änderungen, um sicherzustellen, dass sie wie erwartet funktionieren.
-4. Senden Sie eine Pull-Anfrage, in der Sie Ihre Änderungen beschreiben.
+4. Senden Sie eine Pull-Anfrage, in der Sie Ihre Änderungen beschreiben. Ich werde es mir Gründlich Anschauen
 
 Vielen Dank für Ihr Interesse, zu diesem Projekt beizutragen!
