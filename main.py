@@ -32,13 +32,14 @@ while True:
     # Collect input from the user
     apprenticeship = input("Lehre: ")
     print("hier müssen sie nichts eingeben, einfach Enter drücken falls sie keine Angaben haben.")
+    time.sleep(1)
     salutation = input("Anrede Person (Beispiel: Peter Müller): ") or "Damen und Herren"
-    print("hier müssen sie nichts eingeben, einfach Enter drücken falls sie keine Angaben haben.")
     gender = input("Geschlecht der Person (m oder f): ")
     company_name = input("Firma: ")
     application_address = input("Bewerbungsadresse: ")
     application_location = input("Bewerbungsort: ")
     company_email = input("Firmenmail: ")  # email of the company you are applying to
+    reason = input("Wieso willst du die Lehre bei dieser Firma machen? (optional): ")
     confirmation = input(f"{company_name}, {application_address}, {application_location}, {company_email}, korrekt? (j/n): ")
 
     if confirmation.lower() != "j" or not all([apprenticeship, company_name, application_address, application_location, company_email]):
@@ -52,6 +53,8 @@ while True:
         replace_text_in_docx("Bewerbung/Bewerbung.docx", "SDF)Pasdfunpoiva)PHDF(P)S", company_name)
         replace_text_in_docx("Bewerbung/Bewerbung.docx", "()SDFZ=ZHVHHHDUC=P/S78z0f", application_address)
         replace_text_in_docx("Bewerbung/Bewerbung.docx", "c6t89fdsa08967tg", application_location)
+        if reason:
+            replace_text_in_docx("Bewerbung/Bewerbung.docx", "sdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASDsdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASD", reason)
 
         # Determine the proper salutation based on gender
         if gender == "m":
@@ -90,3 +93,5 @@ Mit freundlichen Grüßen,
         replace_text_in_docx("Bewerbung/Bewerbung.docx", application_location, "c6t89fdsa08967tg")
         replace_text_in_docx("Bewerbung/Bewerbung.docx", current_date, "DatummutaD")
         replace_text_in_docx("Bewerbung/Bewerbung.docx", full_salutation, "F(ZUS?DFhv9a8dfs089F/")
+        if reason:
+            replace_text_in_docx("Bewerbung/Bewerbung.docx", reason, "sdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASDsdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASD")
