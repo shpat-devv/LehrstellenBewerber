@@ -33,11 +33,11 @@ def check_credentials(key_path, mail_path):
     if not os.path.isfile(key_path):
         print("File googlekey.txt doesn't exist in secretkey.")
     elif os.path.getsize(key_path) == 0:
-        print("File googlekey.txt is empty.")
+        ...
     
     if not os.path.isfile(mail_path):
         print("File googlemail.txt doesn't exist in secretkey.")
     elif os.path.getsize(mail_path) == 0:
-        print("File googlemail.txt is empty.")
+        ...
 
     return keyavailable and mailavailable

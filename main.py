@@ -34,15 +34,14 @@ if not check_credentials("_internal/secretkey/googlekey.txt", "_internal/secretk
         googlemail = input("Gib deine Google Mail ein: ")
         googlekey = input("Gib dein Google Key ein: ")
 
-        print("Senden einer Testmail...")
-        waiting_animation(3)
         set_credentials(googlemail, googlekey) # Save the credentials to the email sender
+        
+        print("Senden einer Testmail...")
+
         if send_email(googlemail, "Test", "Test", documents):
-            save_key_to_file(googlekey, googlemail) # Save the credentials to the secretkey
-            waiting_animation(3)
-            print("\nEmail wurde an ihnen geschickt!")
-            print("Starten des Programmes...")
-            waiting_animation(3)
+            save_key_to_file(googlekey, googlemail) # Save the credentials to the secretkeyf
+            print("\nEmail wurde an ihnen geschickt, checken sie ihre Email.")
+            time.sleep(1)
             break
         else:
             print("Fehler beim Senden der Email! Vielleicht ein Tip fehler?")
@@ -65,7 +64,7 @@ while True:
     application_location = input("Bewerbungsort: ")
     company_email = input("Firmenmail: ")
     reason = input("\nWieso willst du die Lehre bei dieser Firma machen? (optional): ")
-    confirmation = input(f"\nFirma Name:\t{company_name}\nAdresse:\t{application_address}\nOrt:\t\t{application_location}\Email:\t\t{company_email}\n\nAlles korrekt? (j/n): ")
+    confirmation = input(f"\nFirma Name:\t{company_name}\nAdresse:\t{application_address}\nOrt:\t\t{application_location}\nEmail:\t\t{company_email}\n\nAlles korrekt? (j/n): ")
 
     if confirmation.lower() != "j" or not all([apprenticeship, company_name, application_address, application_location, company_email]):
         continue
