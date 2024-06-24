@@ -8,7 +8,7 @@ import os
 import subprocess
 import time
 
-# google credentials
+# google gmail credentials
 googlemail = ""
 googlekey = ""
 
