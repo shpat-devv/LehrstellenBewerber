@@ -12,7 +12,7 @@ def waiting_animation(wait_time):
             sys.stdout.flush()
             time.sleep(0.1)
             wait_time -= 1
-    sys.stdout.write('\rDone!     ')
+    sys.stdout.write('\rDone!     \n')
     sys.stdout.flush()
 
 ascii_art_name = """

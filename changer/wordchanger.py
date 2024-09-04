@@ -2,7 +2,11 @@ from docx import Document
 
 def replace_text_in_docx(docx_file, old_text, new_text):
     # Load the Word document
-    doc = Document(docx_file)
+    try:
+        doc = Document(docx_file)
+    except:
+        print(f"Word Datei {docx_file}")
+        
     replaced = False
 
     # Iterate through all paragraphs in the document
