@@ -21,6 +21,9 @@ https://www.youtube.com/watch?v=YKSpANU8jPE
 Installieren von Git
 https://git-scm.com/downloads
 
+Vorschau
+https://www.youtube.com/watch?v=DaNwtk8LIIM&t=18s
+
 ## Installation
 
 1. Klone das projekt:
