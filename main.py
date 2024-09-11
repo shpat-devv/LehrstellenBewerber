@@ -9,6 +9,10 @@ import subprocess
 current_date = datetime.datetime.now().strftime("%d.%m.%Y")
 
 # Define the path to the documents to be sent
+
+print(os.path.dirname(__file__))
+
+application_path = os.path.join(os.path.dirname(__file__), "Bewerbung/Bewerbung.docx")
 document_name = "Bewerbung/tosend"
 document_path = os.path.join(os.path.dirname(__file__), document_name)
 files = os.listdir(document_path)
@@ -23,7 +27,6 @@ ask_for_help = input("Würdest du gerne Hilfe nebenbei haben? (j/n): ")
 if ask_for_help.lower() == "j":
     subprocess.Popen(["python", "help/help.py"], creationflags=subprocess.CREATE_NEW_CONSOLE)
     time.sleep(3)
-
 
 name = input("Dein Name: ")
 surname = input("Dein Nachname: ")
@@ -48,25 +51,28 @@ while True:
         print("Changing files...")
         waiting_animation(3)
 
+        first_name = salutation.split(" ")[0]
+        last_name = salutation.split(" ")[1]
+
         # Update the Word document with the provided details
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", "DatummutaD", current_date)
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", "SDF)Pasdfunpoiva)PHDF(P)S", company_name)
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", "()SDFZ=ZHVHHHDUC=P/S78z0f", application_address)
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", "c6t89fdsa08967tg", application_location)
+        replace_text_in_docx(application_path, "DatummutaD", current_date)
+        replace_text_in_docx(application_path, "SDF)Pasdfunpoiva)PHDF(P)S", company_name)
+        replace_text_in_docx(application_path, "()SDFZ=ZHVHHHDUC=P/S78z0f", application_address)
+        replace_text_in_docx(application_path, "c6t89fdsa08967tg", application_location)
         if reason:
-            replace_text_in_docx("Bewerbung/Bewerbung.docx", "sdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASDsdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASD", reason)
+            replace_text_in_docx(application_path, "sdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASDsdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASD", reason)
 
         # Determine the proper salutation based on gender
         if gender == "m":
-            full_salutation = f"geehrter Herr {salutation}"
+            full_salutation = f"geehrter Herr {last_name}"
         elif gender == "f":
-            full_salutation = f"geehrte Frau {salutation}"
+            full_salutation = f"geehrte Frau {last_name}"
         else:
             full_salutation = "geehrte Damen und Herren"
         
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", "F(ZUS?DFhv9a8dfs089F/", full_salutation)
+        replace_text_in_docx(application_path, "F(ZUS?DFhv9a8dfs089F/", last_name)
 
-        word_to_pdf_converter()
+        word_to_pdf_converter(application_path, document_path)
 
         print("Sending email...")
         waiting_animation(3)
@@ -75,9 +81,11 @@ while True:
         email_message = f"""
 {"Sehr "+ full_salutation},
 
-Mein Name ist {name}, und ich interessiere mich sehr für eine Lehrstelle bei Ihrem Unternehmen.
+Mein Name ist {name}, und ich interessiere mich sehr für eine Lehrstelle als {apprenticeship} bei Ihrem Unternehmen.
 
-Ich bin äußerst motiviert, bei Ihnen wertvolle Einblicke zu gewinnen und meine Fähigkeiten weiterzuentwickeln. Im Anhang finden Sie meine Bewerbungsunterlagen, bestehend aus meinem Lebenslauf, meiner Bewerbung, meinen Zeugnissen.
+Mit großem Interesse verfolge ich die Entwicklungen in Ihrem Unternehmen und sehe in Ihnen einen hervorragenden Ausbildungsbetrieb, der mir die Möglichkeit bietet, wertvolle berufliche Erfahrungen zu sammeln und meine Fähigkeiten weiterzuentwickeln. Die Logistikbranche fasziniert mich besonders, da sie vielseitig und entscheidend für reibungslose Abläufe in nahezu allen Wirtschaftssektoren ist.
+
+Im Anhang finden Sie meine vollständigen Bewerbungsunterlagen, bestehend aus meinem Lebenslauf, meinem Bewerbungsschreiben sowie meinen Zeugnissen. Ich bin hoch motiviert und freue mich sehr darauf, die Chance zu erhalten, mich persönlich bei Ihnen vorzustellen und Sie von meiner Eignung zu überzeugen.
 
 Über eine positive Rückmeldung von Ihnen würde ich mich sehr freuen.
 
@@ -88,10 +96,12 @@ Mit freundlichen Grüßen,
         send_email(company_email, f"Bewerbung um eine Lehrstelle als {apprenticeship}", email_message, documents)
 
         # Revert the changes in the Word document
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", company_name, "SDF)Pasdfunpoiva)PHDF(P)S")
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", application_address, "()SDFZ=ZHVHHHDUC=P/S78z0f")
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", application_location, "c6t89fdsa08967tg")
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", current_date, "DatummutaD")
-        replace_text_in_docx("Bewerbung/Bewerbung.docx", full_salutation, "F(ZUS?DFhv9a8dfs089F/")
+        replace_text_in_docx(application_path, company_name, "SDF)Pasdfunpoiva)PHDF(P)S")
+        replace_text_in_docx(application_path, application_address, "()SDFZ=ZHVHHHDUC=P/S78z0f")
+        replace_text_in_docx(application_path, application_location, "c6t89fdsa08967tg")
+        replace_text_in_docx(application_path, current_date, "DatummutaD")
+        replace_text_in_docx(application_path, full_salutation, "F(ZUS?DFhv9a8dfs089F/")
         if reason:
-            replace_text_in_docx("Bewerbung/Bewerbung.docx", reason, "sdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASDsdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASD")
+            replace_text_in_docx(application_path, reason, "sdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASDsdf’78a’dfuihspdoifhpa98P(CZUP)(SDIFHPKSJDczhd098g’asdfu8››9872371›48/&»ç+ç&z07czdh7p9uhcsDFHAPSDUFHASD")
+
+
