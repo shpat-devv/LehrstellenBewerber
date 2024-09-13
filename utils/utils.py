@@ -12,7 +12,7 @@ def waiting_animation(wait_time):
             sys.stdout.flush()
             time.sleep(0.1)
             wait_time -= 1
-    sys.stdout.write('\rDone!     ')
+    sys.stdout.write('\rDone!     \n')
     sys.stdout.flush()
 
 ascii_art_name = """
@@ -25,3 +25,21 @@ ascii_art_name = """
 
 """
 
+def get_email_message(full_salutation,name,surname):
+    return f"""
+{"Sehr "+ full_salutation},
+
+Mein Name ist {name}, und ich interessiere mich sehr für eine Lehrstelle bei Ihrem Unternehmen.
+
+Ich bin äußerst motiviert, bei Ihnen wertvolle Einblicke zu gewinnen und meine Fähigkeiten weiterzuentwickeln. Im Anhang finden Sie meine Bewerbungsunterlagen, bestehend aus meinem Lebenslauf, meiner Bewerbung, meinen Zeugnissen.
+
+Über eine positive Rückmeldung von Ihnen würde ich mich sehr freuen.
+
+Mit freundlichen Grüßen,
+{name} {surname}
+"""
+
+
+if __name__ == "__main__":
+    print(ascii_art_name)
+    print(get_email_message("Herr Mustermann","Max","Mustermann"))

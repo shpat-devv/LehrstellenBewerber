@@ -8,9 +8,19 @@ from os.path import basename
 import os
 import time
 
-from secret import secretgooglekey, googleemail
+googleemail = ""
+secretgoogle = ""
+
+def set_credentials(mail,key):
+    global googleemail
+    global secretgooglekey
+    googleemail = mail
+    secretgooglekey = key
 
 def send_email(receiver_email, subject, message, folder_path):
+    global googleemail
+    global secretgooglekey
+    
     try:
         # Create a multipart message
         msg = MIMEMultipart()
@@ -40,9 +50,8 @@ def send_email(receiver_email, subject, message, folder_path):
             server.starttls()
             server.login(googleemail, secretgooglekey)
             server.sendmail(googleemail, receiver_email, msg.as_string())
-
-        print("EMAIL HAS BEEN SENT SUCCESSFULLY")
+        return True
 
     except Exception as e:
-        print(f"Failed to send email: {e}")
+        return False
 
