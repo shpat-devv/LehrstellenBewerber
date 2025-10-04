@@ -21,7 +21,7 @@ def save_key_to_file(key, mail):
             this_path = "_internal"
         else:
             with open('secretkey/googlekey.txt', 'w') as file:
-                file.truncate(0)  # Clear the file
+                file.truncate(0)  
                 file.write(key)
         print("Saved googlekey.txt successfully.")
 
@@ -31,11 +31,11 @@ def save_key_to_file(key, mail):
     try:
         if Path('/_internal').exists():
             with open('_internal/secretkey/googlemail.txt', 'w') as file:
-                file.truncate(0)  # Clear the file
+                file.truncate(0) 
                 file.write(mail)
         else:
             with open('secretkey/googlemail.txt', 'w') as file:
-                file.truncate(0)  # Clear the file
+                file.truncate(0) 
                 file.write(mail)
         print("Saved googlemail.txt successfully.")
     except Exception as e:
